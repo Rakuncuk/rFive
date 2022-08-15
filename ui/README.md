@@ -37,7 +37,7 @@ Here is an example:
 
 ### sendMessage
 
-Since NUI is a two way street you need to be able to send messages to the Lua client as well.
+Since NUI is a two way street, you need to be able to send messages to the Lua client as well.
 
 You can use the sendMessage accomplish this.
 
