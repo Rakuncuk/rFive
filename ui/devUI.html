@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Dev UI</title>
+    <style type="text/css">
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #content {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0px;
+        }
+    </style>
+    <script>
+        window.addEventListener('message', ({ data }) => {
+            const { type, payload = [] } = data;
+            document.getElementById('react').contentWindow.postMessage({ type, payload }, '*');
+        })
+
+        function sendMessage(event, data = {}, res) {
+            fetch(`https://${GetParentResourceName()}/${event}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify(data)
+            }).then(resp => resp.json()).then(r => res(r)).catch(err => console.log('NUI Error:', err))
+        }
+    </script>
+</head>
+
+<body>
+    <div id="content">
+        <iframe id="react" width="100%" height="100%" frameborder="0" src="http://localhost:3000"></iframe>
+    </div>
+</body>
+
+</html>
