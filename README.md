@@ -2,7 +2,7 @@
 
 rFive is a [React](https://reactjs.org/) boilerplate for the popular Grand Theft Auto V mod called [FiveM](https://fivem.net/).
 
-Traditionally you have to build your [React](https://reactjs.org/) app every time you wanted to test it in game. 
+Traditionally you have to build your [React](https://reactjs.org/) app every time you want to test it in game. 
 
 This boilerplate creates a seamless interaction layer between [FiveM](https://fivem.net/) and the [React](https://reactjs.org/) development environment to allow hot reloads.
 
@@ -12,11 +12,11 @@ You can learn how to use the Lua functions and the React Hooks by clicking [here
 
 # How to use
 
-Just start your [React](https://reactjs.org/) project like you normally would.
+Start your [React](https://reactjs.org/) project like you normally would.
+
 Join the game and start the script!
 
 > You can use `start.bat` to start the project as well.
-
 
 # Production
 
