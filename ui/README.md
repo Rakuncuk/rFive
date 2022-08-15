@@ -14,7 +14,7 @@ Here is an example:
     import useNUI from './NUI'
 ```
 
-> And register an event called 'testEvent' 
+> And register an event called 'testEvent'
 
 ```jsx
     useNUI(registerEvent => {
@@ -23,8 +23,10 @@ Here is an example:
         })
     })
 ```
-> You can call this event by using the `_NUI` function from the LUA client.
+
+> You can call this event by using the `_NUI` function from the Lua client.
 > Here is an example:
+
 ```lua
     _NUI('testEvent', 'testArg1', 2, {testArg = '3'})
 ```
@@ -35,7 +37,7 @@ Here is an example:
 
 ### sendMessage
 
-Since NUI is a two way street you need to be able to send messages to the LUA client as well.
+Since NUI is a two way street you need to be able to send messages to the Lua client as well.
 
 You can use the sendMessage accomplish this.
 
@@ -52,11 +54,22 @@ You can use the sendMessage accomplish this.
         .then(response => console.log(response))
 ```
 
-> Here is how you can listen and send a response back from the LUA client
+> Here is how you can listen and send a response back from the Lua client
 
 ```lua
-    RegisterNUICallback('clientTestEvent', function(data, response)
+    RegisterNUICallback('greetGrievous', function(data, response)
         print('Message from General Kenobi:', data.val)
         response('General Kenobi, you are a bold one!')
+    end)
+```
+
+
+onUIReady
+
+If you need to know exactly when the UI starts (for example to send a config data) then you can use onUIReady on the Lua client.
+
+```lua
+    onUIReady(function()
+        _NUI('setPlayerData', {...})
     end)
 ```

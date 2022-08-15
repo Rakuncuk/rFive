@@ -17,28 +17,12 @@ _NUI = function(type, ...)
 end
 
 RegisterNUICallback('UIReady', function(data, cb)
-    print('UI Ready baby')
     ready = true
-    for i =1, #uiReadyFuncs do
+    for i = 1, #uiReadyFuncs do
         uiReadyFuncs[i]()
     end
     uiReadyFuncs = {}
     return cb('ok')
-end)
-
-RegisterNUICallback('testNUI', function(data, cb)
-    _NUI('testEvent', 'val1')
-    cb('Hi from client')
-end)
-
-RegisterCommand('t', function()
-    _NUI('testEvent', 'val1')
-end)
-
-Citizen.CreateThread(function()
-    Citizen.Wait(100)
-    SetNuiFocus(true, true)
-
 end)
 
 AddEventHandler('onResourceStop', function(r)
