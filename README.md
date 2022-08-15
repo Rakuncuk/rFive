@@ -13,9 +13,10 @@ You can learn how to use the Lua functions and the React Hooks by clicking [here
 # How to use
 
 Just start your [React](https://reactjs.org/) project like you normally would.
-> You can use `start.bat` for this as well.
-
 Join the game and start the script!
+
+> You can use `start.bat` to start the project as well.
+
 
 # Production
 
