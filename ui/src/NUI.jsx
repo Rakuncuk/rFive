@@ -31,15 +31,16 @@ const destroyEvents = namespace => {
 const registerEvent = (event, cb, namespace) => {
     if (!Events.has(event))
         Events.set(event, [])
-    Events.get(event).push({ cb: cb, namespace: namespace })
+    Events.get(event)
+        .push({ cb: cb, namespace: namespace })
 }
 
 const NUIContext = createContext()
-const useNUI = (f) => useContext(NUIContext)(f)
+const useNUI = f => useContext(NUIContext)(f)
 
 export const NUIProvider = ({ children }) => {
     const randomNamespace = () => Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-    
+
     const useNUIHandler = (handler, namespace = randomNamespace()) => {
         useEffect(() => {
             handler((event, cb) => registerEvent(event, cb, namespace))
@@ -48,6 +49,9 @@ export const NUIProvider = ({ children }) => {
             }
         }, [])
     }
+
+    sendMessage('UIReady')
+
     return (
         <NUIContext.Provider value={useNUIHandler}>
             {children}
@@ -58,7 +62,8 @@ export const NUIProvider = ({ children }) => {
 window.addEventListener('message', ({ data }) => {
     const { type, payload = [] } = data
     if (Events.has(type))
-        Events.get(type).forEach(({ cb }) => cb(...payload))
+        Events.get(type)
+            .forEach(({ cb }) => cb(...payload))
 })
 
 export default useNUI

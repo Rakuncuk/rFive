@@ -1,5 +1,6 @@
 local uiReadyFuncs = {}
 local ready = false
+
 onUIReady = function(f)
     if ready then
         return f()
